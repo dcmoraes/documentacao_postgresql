@@ -17,7 +17,7 @@ FROM pg_proc p
 	LEFT JOIN pg_type t ON t.oid = p.prorettype 
 	LEFT JOIN pg_description d ON d.objoid = p.oid
 WHERE n.nspname not in ('pg_catalog', 'information_schema')
-  AND p.prokind IN ('f','p')
+	AND p.prokind IN ('f','p')
 ORDER BY 1, 2, 3;
 ```
 
