@@ -2,7 +2,7 @@
 
 PROCEDURES / FUNCTIONS
 ```
-SELECT 
+SELECT
 	CASE 
 		WHEN p.prokind = 'f' THEN 'Function'
 		WHEN p.prokind = 'p' THEN 'Procedure'
@@ -50,11 +50,11 @@ SELECT
 	clf.relname AS "Tabela (referenciada)",
 	af.attname AS "Coluna (referenciada)"
 FROM pg_catalog.pg_attribute a
-  JOIN pg_catalog.pg_class cl ON (a.attrelid = cl.oid AND cl.relkind = 'r')
-  JOIN pg_catalog.pg_namespace n ON (n.oid = cl.relnamespace)
-  JOIN pg_catalog.pg_constraint ct ON (a.attrelid = ct.conrelid AND ct.confrelid != 0 AND ct.conkey[1] = a.attnum)
-  JOIN pg_catalog.pg_class clf ON (ct.confrelid = clf.oid AND clf.relkind = 'r')
-  JOIN pg_catalog.pg_namespace nf ON (nf.oid = clf.relnamespace)
-  JOIN pg_catalog.pg_attribute af ON (af.attrelid = ct.confrelid AND af.attnum = ct.confkey[1])
+	JOIN pg_catalog.pg_class cl ON (a.attrelid = cl.oid AND cl.relkind = 'r')
+	JOIN pg_catalog.pg_namespace n ON (n.oid = cl.relnamespace)
+	JOIN pg_catalog.pg_constraint ct ON (a.attrelid = ct.conrelid AND ct.confrelid != 0 AND ct.conkey[1] = a.attnum)
+	JOIN pg_catalog.pg_class clf ON (ct.confrelid = clf.oid AND clf.relkind = 'r')
+	JOIN pg_catalog.pg_namespace nf ON (nf.oid = clf.relnamespace)
+	JOIN pg_catalog.pg_attribute af ON (af.attrelid = ct.confrelid AND af.attnum = ct.confkey[1])
 ORDER BY 1, 2, 3;
 ```
